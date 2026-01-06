@@ -1,9 +1,17 @@
 services:
   front:
     container_name: front
-    image: node:24.12-trixie-slim
+    build: portefolio
+    ports:
+      - "5173:5173"
+    command: sleep infinity
+    networks:
+      - strapi
     volumes: 
       - ./portefolio:/app
+    depends_on:
+      - strapi
+
   strapi:
     container_name: strapi
     build: portefolio-strapi

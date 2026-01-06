@@ -1,0 +1,52 @@
+services:
+  strapi:
+    container_name: strapi
+    build: portefolio-strapi
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: db
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./portefolio-strapi/config:/opt/app/config
+      - ./portefolio-strapi/src:/opt/app/src
+      - ./portefolio-strapi/package.json:/opt/package.json
+      - ./portefolio-strapi/yarn.lock:/opt/yarn.lock
+#      - ./.env:/opt/app/.env
+      - ./portefolio-strapi/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - strapi
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:11.4.9-ubi9
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME} 
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    restart: always
+    networks:
+      - strapi
+    volumes:
+      - strapi-data:/var/lib/mysql
+
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: strapi
+    driver: bridge

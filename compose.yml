@@ -1,4 +1,9 @@
 services:
+  front:
+    container_name: front
+    image: node:24.12-trixie-slim
+    volumes: 
+      - ./portefolio:/app
   strapi:
     container_name: strapi
     build: portefolio-strapi

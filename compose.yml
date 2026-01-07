@@ -4,7 +4,6 @@ services:
     build: portefolio
     ports:
       - "5173:5173"
-    command: sleep infinity
     networks:
       - strapi
     volumes: 
@@ -33,7 +32,6 @@ services:
       - ./portefolio-strapi/src:/opt/app/src
       - ./portefolio-strapi/package.json:/opt/package.json
       - ./portefolio-strapi/yarn.lock:/opt/yarn.lock
-#      - ./.env:/opt/app/.env
       - ./portefolio-strapi/public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"

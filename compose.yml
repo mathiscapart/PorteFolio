@@ -2,6 +2,7 @@ services:
   front:
     container_name: front
     build: portefolio
+    restart: unless-stopped
     ports:
       - "5173:5173"
     networks:

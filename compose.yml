@@ -1,20 +1,20 @@
 services:
   front:
     container_name: front
-    build: portefolio
+    build: portfolio
     restart: unless-stopped
     ports:
       - "5173:5173"
     networks:
       - strapi
     volumes: 
-      - ./portefolio:/app
+      - ./portfolio:/app
     depends_on:
       - strapi
 
   strapi:
     container_name: strapi
-    build: portefolio-strapi
+    build: portfolio-strapi
     restart: unless-stopped
     env_file: .env
     environment:
@@ -29,11 +29,11 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./portefolio-strapi/config:/opt/app/config
-      - ./portefolio-strapi/src:/opt/app/src
-      - ./portefolio-strapi/package.json:/opt/package.json
-      - ./portefolio-strapi/yarn.lock:/opt/yarn.lock
-      - ./portefolio-strapi/public/uploads:/opt/app/public/uploads
+      - ./portfolio-strapi/config:/opt/app/config
+      - ./portfolio-strapi/src:/opt/app/src
+      - ./portfolio-strapi/package.json:/opt/package.json
+      - ./portfolio-strapi/yarn.lock:/opt/yarn.lock
+      - ./portfolio-strapi/public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
     networks:

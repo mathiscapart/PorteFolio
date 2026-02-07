@@ -1,34 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/mathis_style_notion.webp'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from './components/Header'
+import { Banner } from './components/Banner'
+import mathisLogo from './assets/mathis_style_notion_remove_gb tech.png'
+import portfolioLogo from './assets/portfolio_tech_jaune.png'
+import { Profil } from './components/Profil'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Header />
+      <div className="flex  items-center justify-center gap-10 my-20">
+        <img src={portfolioLogo} alt="AI Illustration" className="w-250" />
+        <img src={mathisLogo} alt="AI Illustration" className="rounded-full w-60 h-60" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Banner />
+      <Profil />
+    </div>
   )
 }
 

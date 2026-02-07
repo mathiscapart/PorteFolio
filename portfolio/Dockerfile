@@ -1,7 +1,11 @@
-FROM node:24.12-trixie-slim
+FROM node:24.4-slim
 
 WORKDIR /app
+
 COPY package.json ./
+
 RUN npm install
+
 EXPOSE 5173
+
 CMD ["npm", "run", "dev", "--", "--host"]

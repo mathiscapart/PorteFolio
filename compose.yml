@@ -1,7 +1,9 @@
 services:
   front:
     container_name: front
-    build: portfolio
+    build: 
+      context: ./portfolio
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "5173:5173"
@@ -9,12 +11,15 @@ services:
       - strapi
     volumes: 
       - ./portfolio:/app
+      - /app/node_modules
     depends_on:
       - strapi
 
   strapi:
     container_name: strapi
-    build: portfolio-strapi
+    build: 
+      context: ./portfolio-strapi
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file: .env
     environment:

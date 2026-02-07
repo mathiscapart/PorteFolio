@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hobbies",
+  "info": {
+    "singularName": "hobbie",
+    "pluralName": "hobbies",
+    "displayName": "Hobbie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
